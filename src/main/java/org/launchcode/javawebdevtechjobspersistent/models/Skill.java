@@ -8,31 +8,31 @@ import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-public class Skill extends AbstractEntity {
 
-    @Id
-    @GeneratedValue
+public class Skill extends AbstractEntity {
 
     @NotBlank(message = "Required field")
     @Size(min = 3, max = 120, message = "Must be between 3 and 120 characters!")
-    private String skill;
+    private String description;
 
-    public Skill(String skill) {
+    public Skill() {}
+
+    public Skill(String description) {
         super();
-        this.skill = skill;
+        this.description = description;
     }
 
-    public String getSkill() {
-        return skill;
+    public String getDescription() {
+        return description;
     }
 
-    public void setSkill(String skill) {
-        this.skill = skill;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public String toString() {
-        return skill;
+        return description;
     }
 
     @Override
@@ -40,12 +40,12 @@ public class Skill extends AbstractEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        Skill skill1 = (Skill) o;
-        return Objects.equals(skill, skill1.skill);
+        Skill skill = (Skill) o;
+        return Objects.equals(description, skill.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), skill);
+        return Objects.hash(super.hashCode(), description);
     }
 }

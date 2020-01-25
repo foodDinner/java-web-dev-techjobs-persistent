@@ -1,28 +1,24 @@
 package org.launchcode.javawebdevtechjobspersistent.models;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-public class Employer extends AbstractEntity {
 
-    @Id
-    @GeneratedValue
+public class Employer extends AbstractEntity {
 
     @NotBlank(message = "Required field")
     @Size(min = 3, max = 120, message = "Must be between 3 and 120 characters!")
     private String location;
 
+    public Employer() {}
+
     public Employer(String location) {
         super();
         this.location = location;
     }
-
-    public Employer() {}
 
     public String getLocation() {
         return location;
