@@ -2,8 +2,6 @@ package org.launchcode.javawebdevtechjobspersistent.models;
 
 import java.util.ArrayList;
 
-// This is a change made in sandbox.
-
 /**
  * Created by LaunchCode
  */
@@ -33,12 +31,15 @@ public class JobData {
             results = findByValue(value, allJobs);
             return results;
         }
-        for (Job job : allJobs) {
 
-            String aValue = getFieldValue(job, column);
+        else {
+            for (Job job : allJobs) {
 
-            if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
-                results.add(job);
+                String aValue = getFieldValue(job, column);
+
+                if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
+                    results.add(job);
+                }
             }
         }
 
@@ -52,7 +53,7 @@ public class JobData {
         } else if (fieldName.equals("employer")){
             theValue = job.getEmployer().toString();
         } else {
-            theValue = job.toString();
+            theValue = job.getSkills().toString(); // LC fix on 1/28
         }
 
         return theValue;
@@ -74,7 +75,7 @@ public class JobData {
 
             if (job.getName().toLowerCase().contains(value.toLowerCase())) {
                 results.add(job);
-            } else if (job.getEmployer().toLowerCase().contains(value.toLowerCase())) {
+            } else if (job.getEmployer().toString().toLowerCase().contains(value.toLowerCase())) {
                 results.add(job);
             } else if (job.getSkills().contains(value.toLowerCase())) {
                 results.add(job);
@@ -86,7 +87,4 @@ public class JobData {
 
         return results;
     }
-
-
 }
-
